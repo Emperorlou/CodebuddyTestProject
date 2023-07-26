@@ -49,7 +49,7 @@ function setGameOver() {
     resetButton = document.createElement('button');
     resetButton.textContent = 'Start new game';
     resetButton.classList.add('btn', 'btn-secondary', 'mt-3');
-    document.body.append(resetButton);
+    document.querySelector('.resetButtonContainer').append(resetButton);
     resetButton.addEventListener('click', resetGame);
 }
 
