@@ -6,6 +6,8 @@ let guessSubmit = document.querySelector('#guessSubmit');
 let guessField = document.querySelector('#guessField');
 let guessCount = 1;
 let resetButton;
+let progressBar = document.querySelector('#progressBar');
+let buttonContainer = document.querySelector('#buttonContainer');
 
 function checkGuess() {
     let userGuess = Number(guessField.value);
@@ -16,7 +18,7 @@ function checkGuess() {
 
     if (userGuess === randomNumber) {
         lastResult.textContent = 'Congratulations! You got it right!';
-        lastResult.classList.add('text-success');
+        lastResult.classList.add('winning-message');
         lowOrHi.textContent = '';
         setGameOver();
     } else if (guessCount === 10) {
@@ -32,6 +34,7 @@ function checkGuess() {
         }
     }
     guessCount++;
+    progressBar.style.width = `${guessCount * 10}%`;
     guessField.value = '';
     guessField.focus();
 }
@@ -49,7 +52,7 @@ function setGameOver() {
     resetButton = document.createElement('button');
     resetButton.textContent = 'Start new game';
     resetButton.classList.add('btn', 'btn-secondary', 'mt-3');
-    document.body.append(resetButton);
+    buttonContainer.append(resetButton);
     resetButton.addEventListener('click', resetGame);
 }
 
@@ -64,6 +67,7 @@ function resetGame() {
     guessSubmit.disabled = false;
     guessField.value = '';
     guessField.focus();
-    lastResult.classList.remove('text-success', 'text-danger');
+    lastResult.classList.remove('winning-message', 'text-danger');
+    progressBar.style.width = '0%';
     randomNumber = Math.floor(Math.random() * 100) + 1;
 }
