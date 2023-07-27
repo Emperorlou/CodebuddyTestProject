@@ -18,7 +18,7 @@ function checkGuess() {
 
     if (userGuess === randomNumber) {
         lastResult.textContent = 'Congratulations! You got it right!';
-        lastResult.classList.add('winning-message');
+        lastResult.style.color = 'green';
         lowOrHi.textContent = '';
         setGameOver();
     } else if (guessCount === 10) {
